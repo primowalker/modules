@@ -34,6 +34,7 @@ vfstab_solaris = commands.getoutput('cat /etc/vfstab')
 format_solaris = commands.getoutput('echo | format')
 metastat_solaris = commands.getoutput('metastat')
 
+
 # Get LVM information
 pvs_linux = commands.getoutput('pvs')
 vgs_linux = commands.getoutput('vgs')
@@ -44,9 +45,11 @@ cfgadm_solaris = commands.getoutput('cfgadm -la')
 # Get networking info
 ifconfig_linux = commands.getoutput('ifconfig')
 ifconfig_solaris = commands.getoutput('ifconfig -a')
+ifconfig_aix = commands.getoutput('ifconfig -a')
 ipaddr_linux = commands.getoutput('ip addr show')
 iproute_linux = commands.getoutput('ip route')
 routes_solaris = commands.getoutput('netstat -r')
+routes_aix = commands.getoutput('netstat -r')
 ipneigh_linux = commands.getoutput('ip neigh show')
 ntpq_linux = commands.getoutput('ntpq -p  2')
 
@@ -59,6 +62,7 @@ def ps():
 # Get CPU info
 cpuinfo_linux = commands.getoutput("cat /proc/cpuinfo | grep processor | wc -l")
 cpuinfo_solairs = ('Placholder - Fix This!')
+cpuinfo_aix = ('lsdev | grep Processor | wc -l')
 
 # Get Memory info
 def meminfo_linux():
@@ -68,6 +72,7 @@ def meminfo_linux():
 	for i in iterator:
 		print (i)
 meminfo_solaris = commands.getoutput('prtconf | grep Memory')
+meminfo_aix = commands.getoutput('lsattr -El sys0 -a realmem | awk '{size = $2/1024/1024 ; print " Total Free Memory " "\t" size" GB"}'`
 
 # Print all the users and their login shells
 def user():
@@ -87,6 +92,7 @@ shadow = commands.getoutput('cat /etc/shadow')
 # Get crontab information
 crontabs_linux = commands.getoutput('tail -n +1 -- /var/spool/cron/tabs/*')
 crontabs_solaris = ('Placholder - Fix This!')
+crontabs_aix = ('Placholder - Fix This!')
 
 # Uptime, reboots, system crashes
 uptime = commands.getoutput('uptime')
